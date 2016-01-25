@@ -18,7 +18,9 @@ coverage/
 
 # MEAN.js app and assets
 # ======================
-public/dist/
+
+# WORKAROUND commenting `dist` because we need it to publish on Heroku
+# public/dist/
 uploads
 modules/users/client/img/profile/uploads
 config/env/local.js
