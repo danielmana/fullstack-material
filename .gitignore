@@ -39,7 +39,9 @@ _site/
 *.bak
 *.swp
 logs/
-build/
+
+# WORKAROUND commenting `build` because we need it to publish on Heroku
+# build/
 
 # Sublime editor
 # ==============
