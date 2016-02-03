@@ -47,9 +47,7 @@ logs/
 
 # Sublime editor
 # ==============
-.sublime-project
-*.sublime-project
-*.sublime-workspace
+*.sublime-*
 
 # Eclipse project files
 # =====================
