@@ -131,26 +131,10 @@ ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
     .run(runBlock);
 
   function runBlock(Menus) {
-
-    // Add the events dropdown item
     Menus.addMenuItem('topbar', {
       title: 'Events',
-      state: 'events',
-      type: 'dropdown',
+      state: 'events.list',
       roles: ['*']
-    });
-
-    // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'events', {
-      title: 'List Events',
-      state: 'events.list'
-    });
-
-    // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'events', {
-      title: 'Create Events',
-      state: 'events.create',
-      roles: ['user']
     });
   }
 })();
@@ -266,25 +250,25 @@ ApplicationConfiguration.registerModule('users.admin.routes', ['core.admin.route
 angular.module('articles').run(['Menus',
   function (Menus) {
     // Add the articles dropdown item
-    Menus.addMenuItem('topbar', {
-      title: 'Articles',
-      state: 'articles',
-      type: 'dropdown',
-      roles: ['*']
-    });
+    // Menus.addMenuItem('topbar', {
+    //   title: 'Articles',
+    //   state: 'articles',
+    //   type: 'dropdown',
+    //   roles: ['*']
+    // });
 
-    // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', 'articles', {
-      title: 'List Articles',
-      state: 'articles.list'
-    });
+    // // Add the dropdown list item
+    // Menus.addSubMenuItem('topbar', 'articles', {
+    //   title: 'List Articles',
+    //   state: 'articles.list'
+    // });
 
-    // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'articles', {
-      title: 'Create Articles',
-      state: 'articles.create',
-      roles: ['user']
-    });
+    // // Add the dropdown create item
+    // Menus.addSubMenuItem('topbar', 'articles', {
+    //   title: 'Create Articles',
+    //   state: 'articles.create',
+    //   roles: ['user']
+    // });
   }
 ]);
 
