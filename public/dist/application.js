@@ -115,6 +115,144 @@ ApplicationConfiguration.registerModule('core');
 ApplicationConfiguration.registerModule('core.admin', ['core']);
 ApplicationConfiguration.registerModule('core.admin.routes', ['ui.router']);
 
+(function() {
+	'use strict';
+
+	// Use Applicaion configuration module to register a new module
+	ApplicationConfiguration.registerModule('events');
+})();
+
+(function() {
+  'use strict';
+
+  runBlock.$inject = ["Menus"];
+  angular
+    .module('events')
+    .run(runBlock);
+
+  function runBlock(Menus) {
+
+    // Add the events dropdown item
+    Menus.addMenuItem('topbar', {
+      title: 'Events',
+      state: 'events',
+      type: 'dropdown',
+      roles: ['*']
+    });
+
+    // Add the dropdown list item
+    Menus.addSubMenuItem('topbar', 'events', {
+      title: 'List Events',
+      state: 'events.list'
+    });
+
+    // Add the dropdown create item
+    Menus.addSubMenuItem('topbar', 'events', {
+      title: 'Create Events',
+      state: 'events.create',
+      roles: ['user']
+    });
+  }
+})();
+
+(function() {
+	'use strict';
+
+	Events.$inject = ["$resource"];
+	angular
+		.module('events')
+		.factory('Events', Events);
+
+	function Events($resource) {
+		return $resource('api/events/:id', {
+			id: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+})();
+
+(function() {
+  'use strict';
+
+  config.$inject = ["$stateProvider"];
+  angular
+    .module('events')
+    .config(config);
+
+  function config($stateProvider) {
+    $stateProvider
+      .state('events', {
+        abstract: true,
+        url: '/events',
+        template: '<ui-view/>'
+      })
+      // list
+      .state('events.list', {
+        url: '',
+        templateUrl: 'modules/events/client/events-list/events-list.html',
+        controller: 'EventsListCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          events: ["Events", function(Events) {
+            return Events.query();
+          }]
+        }
+      })
+      // view
+      .state('events.view', {
+        url: '/:id',
+        templateUrl: 'modules/events/client/event-view/event-view.html',
+        controller: 'EventViewCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          event: ["$stateParams", "Events", function($stateParams, Events) {
+            return Events.get({
+              id: $stateParams.id
+            });
+          }]
+        },
+      })
+      // edit
+      .state('events.edit', {
+        url: '/:id/edit',
+        templateUrl: 'modules/events/client/event-edit/event-edit.html',
+        controller: 'EventEditCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          event: ["$stateParams", "Events", function($stateParams, Events) {
+            return Events.get({
+              id: $stateParams.id
+            });
+          }]
+        },
+        data: {
+          roles: ['user', 'admin']
+        }
+      })
+      // create
+      .state('events.create', {
+        url: '/create',
+        templateUrl: 'modules/events/client/event-edit/event-edit.html',
+        controller: 'EventEditCtrl',
+        controllerAs: 'vm',
+        resolve: {
+          event: ["Events", function(Events) {
+            return new Events({
+              title: '',
+              content: ''
+            });
+          }]
+        },
+        data: {
+          roles: ['user', 'admin']
+        }
+      });
+  }
+})();
+
 'use strict';
 
 // Use Applicaion configuration module to register a new module
@@ -706,6 +844,69 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
     };
   }
 ]);
+
+(function() {
+  'use strict';
+
+  EventEditCtrl.$inject = ["$state", "event"];
+  angular.module('events')
+    .controller('EventEditCtrl', EventEditCtrl);
+
+  function EventEditCtrl($state, event) {
+    var vm = this;
+    vm.event = event;
+    vm.submit = submit;
+
+    function submit() {
+      if (vm.event._id) {
+        vm.event.$update(onSuccess);
+      } else {
+        vm.event.$save(onSuccess);
+      }
+
+      function onSuccess(event) {
+        $state.go('events.view', {
+          id: event._id
+        });
+      }
+    }
+  }
+})();
+
+(function() {
+  'use strict';
+
+  EventViewCtrl.$inject = ["$state", "Authentication", "event"];
+  angular.module('events')
+    .controller('EventViewCtrl', EventViewCtrl);
+
+  function EventViewCtrl($state, Authentication, event) {
+    var vm = this;
+    vm.currentUser = Authentication.user;
+    vm.event = event;
+    vm.remove = remove;
+
+    function remove() {
+      vm.event.$remove(function() {
+        $state.go('events.list');
+      });
+    }
+  }
+})();
+
+(function() {
+	'use strict';
+
+	EventsListCtrl.$inject = ["events"];
+	angular
+		.module('events')
+		.controller('EventsListCtrl', EventsListCtrl);
+
+	function EventsListCtrl(events) {
+		var vm = this;
+		vm.events = events;
+	}
+})();
 
 'use strict';
 
