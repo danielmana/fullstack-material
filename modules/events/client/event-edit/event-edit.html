@@ -1,6 +1,7 @@
 <section>
   <div class="page-header">
-    <h1>Edit Event</h1>
+    <h1 ng-hide="vm.event._id">Create Event</h1>
+    <h1 ng-show="vm.event._id">Edit Event</h1>
   </div>
   <div class="col-md-12">
     <form name="vm.form" class="form-horizontal" ng-submit="vm.submit()" novalidate>
