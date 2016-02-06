@@ -474,6 +474,7 @@ gulp.task('build:client', ['transpile:client', 'styles', 'html', 'constant'], ()
                 .pipe(plugins.uglify())
             .pipe(jsFilter.restore())
             .pipe(cssFilter)
+                .pipe(plugins.replace('../../bower_components/material-design-iconfont/iconfont/', '../fonts/'))
                 .pipe(plugins.minifyCss({
                     cache: true,
                     processImportFrom: ['!fonts.googleapis.com']
@@ -484,6 +485,12 @@ gulp.task('build:client', ['transpile:client', 'styles', 'html', 'constant'], ()
             .pipe(htmlBlock.restore())
         .pipe(plugins.revReplace({manifest}))
         .pipe(gulp.dest(`${paths.dist}/${clientPath}`));
+});
+
+gulp.task('fonts', function() {
+    return gulp.src(`${clientPath}/bower_components/material-design-iconfont/iconfont/*`)
+        .pipe(plugins.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+        .pipe(gulp.dest(`${paths.dist}/${clientPath}/fonts`));
 });
 
 gulp.task('html', function() {
