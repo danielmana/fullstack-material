@@ -23,7 +23,7 @@ describe('Directive: oauthButtons', function() {
 
   it('should contain anchor buttons', function() {
     compileDirective('<oauth-buttons></oauth-buttons>');
-    expect(element.find('a.btn.btn-social').length).toBeGreaterThan(0);
+    expect(element.find('md-button').length).toBeGreaterThan(0);
   });
 
   it('should evaluate and bind the classes attribute to scope.classes', function() {

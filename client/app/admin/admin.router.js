@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('kedb.admin')
-  .config(function($stateProvider) {
+(function() {
+
+  function config($stateProvider) {
     $stateProvider
       .state('admin', {
         url: '/admin',
@@ -10,4 +11,10 @@ angular.module('kedb.admin')
         controllerAs: 'admin',
         authenticate: 'admin'
       });
-  });
+  }
+
+  angular
+    .module('kedb.admin')
+    .config(config);
+
+})();

@@ -7,6 +7,7 @@ angular
     'kedb.constants',
     'kedb.resources',
     'kedb.services',
+    'kedb.events',
 
     'ngMaterial',
     'ngCookies',
@@ -19,7 +20,7 @@ angular
   ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('/events');
 
     $locationProvider.html5Mode(true);
   });

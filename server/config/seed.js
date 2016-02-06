@@ -4,14 +4,14 @@
  */
 
 'use strict';
-import Thing from '../api/event/event.model';
+import Event from '../api/event/event.model';
 import User from '../api/user/user.model';
 
 let seed = require('./seed.json')
 
-Thing.find({}).removeAsync()
+Event.find({}).removeAsync()
   .then(() => {
-    Thing.create(seed.splice(0, 50));
+    Event.create(seed.splice(0, 50));
   });
 
 User.find({}).removeAsync()
