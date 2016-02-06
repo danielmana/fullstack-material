@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Protractor configuration
 // https://github.com/angular/protractor/blob/master/referenceConf.js
 
@@ -73,4 +74,19 @@ var config = {
 };
 
 config.params.baseUrl = config.baseUrl;
+=======
+'use strict';
+
+// Protractor configuration
+var config = {
+  specs: ['modules/*/tests/e2e/*.js']
+};
+
+if (process.env.TRAVIS) {
+  config.capabilities = {
+    browserName: 'firefox'
+  };
+}
+
+>>>>>>> 9047fd5106902853f43bf45129dcf74afa9808e5
 exports.config = config;
