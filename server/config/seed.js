@@ -4,38 +4,31 @@
  */
 
 'use strict';
-import Thing from '../api/thing/thing.model';
+import Thing from '../api/event/event.model';
 import User from '../api/user/user.model';
+
+let seed = require('./seed.json')
 
 Thing.find({}).removeAsync()
   .then(() => {
-    Thing.create({
-      name: '%CCH323-3-CANNOT_ALLOCATE_CCB:',
-      info: 'cannot allocate call control block'
-    }, {
-      name: '%CCH323-3-CANNOT_CREATE_CRVHASH_TBL:',
-      info: 'cannot create the H.323 crv hash table'
-    }, {
-      name: '%CCH323-3-CCH323_H225_SEND_EVENT_FAILED:',
-      info: 'create send internal event [chars] to H.225 state machine failed'
-    });
+    Thing.create(seed.splice(0, 50));
   });
 
 User.find({}).removeAsync()
   .then(() => {
     User.createAsync({
-      provider: 'local',
-      name: 'Test User',
-      email: 'test@example.com',
-      password: 'test'
-    }, {
-      provider: 'local',
-      role: 'admin',
-      name: 'Admin',
-      email: 'admin@example.com',
-      password: 'admin'
-    })
-    .then(() => {
-      console.log('finished populating users');
-    });
+        provider: 'local',
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'test'
+      }, {
+        provider: 'local',
+        role: 'admin',
+        name: 'Admin',
+        email: 'admin@example.com',
+        password: 'admin'
+      })
+      .then(() => {
+        console.log('finished populating users');
+      });
   });
