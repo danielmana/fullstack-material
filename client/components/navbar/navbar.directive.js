@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('kedbApp')
+angular.module('kedb')
   .directive('navbar', () => ({
     templateUrl: 'components/navbar/navbar.html',
     restrict: 'E',

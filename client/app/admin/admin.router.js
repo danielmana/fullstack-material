@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('kedbApp.admin')
+angular.module('kedb.admin')
   .config(function($stateProvider) {
     $stateProvider
       .state('admin', {

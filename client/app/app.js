@@ -1,10 +1,10 @@
 'use strict';
 
 angular
-  .module('kedbApp', [
-    'kedbApp.auth',
-    'kedbApp.admin',
-    'kedbApp.constants',
+  .module('kedb', [
+    'kedb.auth',
+    'kedb.admin',
+    'kedb.constants',
     'kedb.resources',
     'kedb.services',
 

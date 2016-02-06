@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('kedbApp.auth', [
-  'kedbApp.constants',
-  'kedbApp.util',
+angular.module('kedb.auth', [
+  'kedb.constants',
+  'kedb.util',
   'ngCookies',
   'ui.router'
 ])

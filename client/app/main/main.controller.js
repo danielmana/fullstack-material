@@ -27,7 +27,7 @@
     }
   }
 
-  angular.module('kedbApp')
+  angular.module('kedb')
     .controller('MainController', MainController);
 
 })();

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('kedbApp')
+angular.module('kedb')
   .config(function($stateProvider) {
     $stateProvider
       .state('main', {

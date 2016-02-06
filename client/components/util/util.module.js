@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('kedbApp.util', []);
+angular.module('kedb.util', []);

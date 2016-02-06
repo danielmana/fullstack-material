@@ -14,7 +14,7 @@ class AdminController {
   }
 }
 
-angular.module('kedbApp.admin')
+angular.module('kedb.admin')
   .controller('AdminController', AdminController);
 
 })();

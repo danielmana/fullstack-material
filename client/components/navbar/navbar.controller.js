@@ -23,5 +23,5 @@ class NavbarController {
   }
 }
 
-angular.module('kedbApp')
+angular.module('kedb')
   .controller('NavbarController', NavbarController);

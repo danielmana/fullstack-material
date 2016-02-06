@@ -25,5 +25,5 @@ class SettingsController {
   }
 }
 
-angular.module('kedbApp')
+angular.module('kedb')
   .controller('SettingsController', SettingsController);

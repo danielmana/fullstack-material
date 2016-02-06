@@ -7,7 +7,7 @@
       .service('auth/local');
   }
 
-  angular.module('kedbApp.auth')
+  angular.module('kedb.auth')
     .factory('AuthLocalResource', AuthLocalResource);
 
 })();

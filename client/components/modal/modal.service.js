@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('kedbApp')
+angular.module('kedb')
   .factory('Modal', function($rootScope, $modal) {
     /**
      * Opens a modal

@@ -1,5 +1,5 @@
 (function(angular, undefined) {
-  angular.module("kedbApp.constants", [])
+  angular.module("kedb.constants", [])
 
 .constant("appConfig", {
 	"userRoles": [

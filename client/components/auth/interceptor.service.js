@@ -26,7 +26,7 @@ function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
   };
 }
 
-angular.module('kedbApp.auth')
+angular.module('kedb.auth')
   .factory('authInterceptor', authInterceptor);
 
 })();

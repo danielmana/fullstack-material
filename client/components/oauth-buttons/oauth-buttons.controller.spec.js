@@ -3,7 +3,7 @@
 describe('Controller: OauthButtonsCtrl', function() {
 
   // load the controller's module
-  beforeEach(module('kedbApp'));
+  beforeEach(module('kedb'));
 
   var OauthButtonsCtrl, $window;
 

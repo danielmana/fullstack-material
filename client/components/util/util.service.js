@@ -59,7 +59,7 @@ function UtilService($window) {
   return Util;
 }
 
-angular.module('kedbApp.util')
+angular.module('kedb.util')
   .factory('Util', UtilService);
 
 })();

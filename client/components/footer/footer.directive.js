@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('kedbApp')
+angular.module('kedb')
   .directive('footer', function() {
     return {
       templateUrl: 'components/footer/footer.html',

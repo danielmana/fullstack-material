@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('kedbApp.admin', [
-  'kedbApp.auth',
+angular.module('kedb.admin', [
+  'kedb.auth',
   'ui.router'
 ]);

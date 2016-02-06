@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('kedbApp')
+angular.module('kedb')
   .directive('oauthButtons', function() {
     return {
       templateUrl: 'components/oauth-buttons/oauth-buttons.html',

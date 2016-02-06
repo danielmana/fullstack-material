@@ -9,7 +9,7 @@ class LoginController {
     this.user = {};
   }
 
-  submit(form) {
+  submit() {
     this.Auth.login(this.user)
       .then(() => {
         // Logged in, redirect to home
@@ -21,5 +21,5 @@ class LoginController {
   }
 }
 
-angular.module('kedbApp')
+angular.module('kedb')
   .controller('LoginController', LoginController);

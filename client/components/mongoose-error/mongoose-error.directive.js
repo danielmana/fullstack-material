@@ -3,7 +3,7 @@
 /**
  * Removes server error when user updates input
  */
-angular.module('kedbApp')
+angular.module('kedb')
   .directive('mongooseError', function() {
     return {
       restrict: 'A',

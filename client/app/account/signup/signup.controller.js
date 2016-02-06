@@ -22,11 +22,11 @@ class SignupController {
         // Update validity of form fields that match the mongoose errors
         angular.forEach(err.data.errors, (error, field) => {
           this.form[field].$setValidity('mongoose', false);
-          this.form[field].$error['mongoose'] = error.message;
+          this.form[field].$error.mongoose = error.message;
         });
       });
   }
 }
 
-angular.module('kedbApp')
+angular.module('kedb')
   .controller('SignupController', SignupController);

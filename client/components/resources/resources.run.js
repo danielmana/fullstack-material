@@ -1,3 +1,5 @@
+'use strict';
+
 function runBlock(Restangular, toastService) {
   'ngInject';
 

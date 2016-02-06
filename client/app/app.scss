@@ -51,9 +51,17 @@ body {
   max-height: 100%;
 }
 
+code {
+  padding: 2px 4px;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'admin/admin';
+@import 'styles/lists';
 @import 'styles/variables';
 @import '../components/footer/footer';
 @import '../components/modal/modal';
