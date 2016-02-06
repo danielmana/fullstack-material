@@ -2,7 +2,7 @@
 
 (function() {
 
-function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
+function AuthService($location, $http, $cookies, $q, appConfig, Util, User, AuthLocalResource) {
   var safeCb = Util.safeCb;
   var currentUser = {};
   var userRoles = appConfig.userRoles || [];
@@ -21,12 +21,12 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
      * @return {Promise}
      */
     login({email, password}, callback) {
-      return $http.post('/auth/local', {
+      return AuthLocalResource.post({
         email: email,
         password: password
       })
         .then(res => {
-          $cookies.put('token', res.data.token);
+          $cookies.put('token', res.token);
           currentUser = User.get();
           return currentUser.$promise;
         })

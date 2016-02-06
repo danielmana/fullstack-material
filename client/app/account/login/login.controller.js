@@ -1,31 +1,23 @@
 'use strict';
 
 class LoginController {
-  constructor(Auth, $state) {
-    this.user = {};
-    this.errors = {};
-    this.submitted = false;
 
+  constructor(Auth, $state) {
     this.Auth = Auth;
     this.$state = $state;
+
+    this.user = {};
   }
 
-  login(form) {
-    this.submitted = true;
-
-    if (form.$valid) {
-      this.Auth.login({
-        email: this.user.email,
-        password: this.user.password
-      })
+  submit(form) {
+    this.Auth.login(this.user)
       .then(() => {
         // Logged in, redirect to home
         this.$state.go('main');
       })
-      .catch(err => {
-        this.errors.other = err.message;
+      .catch(() => {
+        // TODO
       });
-    }
   }
 }
 

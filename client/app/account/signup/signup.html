@@ -1,4 +1,59 @@
-<div class="container">
+<div layout="row" layout-align="center center" flex layout-margin>
+  <form class="md-whiteframe-1dp" name="vm.form" ng-submit="vm.submit()" novalidate flex-xs="100" flex-sm="66" flex-gt-sm="33">
+
+    <md-content layout="column" flex layout-padding>
+
+      <!-- social network -->
+      <oauth-buttons classes="btn-block"></oauth-buttons>
+
+      <md-divider></md-divider>
+
+      <md-content layout="column">
+
+        <!-- name -->
+        <md-input-container md-no-float class="md-block" style="margin: 0;">
+          <md-icon>person</md-icon>
+          <input type="text" name="name" placeholder="Name" ng-model="vm.user.name" required>
+        </md-input-container>
+
+        <!-- email -->
+        <md-input-container md-no-float class="md-block" style="margin: 0;">
+          <md-icon>email</md-icon>
+          <input type="email" name="email" placeholder="Email" ng-model="vm.user.email" required mongoose-error>
+          <div ng-messages="vm.form.email.$error">
+            <div ng-message="mongoose">{{vm.form.email.$error.mongoose}}</div>
+          </div>
+        </md-input-container>
+
+        <!-- password -->
+        <md-input-container md-no-float class="md-block" style="margin: 0;">
+          <md-icon>lock</md-icon>
+          <input type="password" name="password" placeholder="Password" ng-model="vm.user.password" ng-minlength="3" required mongoose-error>
+          <div ng-messages="vm.form.password.$error">
+            <div ng-message="mongoose">{{vm.form.password.$error.mongoose}}</div>
+          </div>
+        </md-input-container>
+
+        <!-- confirmPassword -->
+        <md-input-container md-no-float class="md-block" style="margin: 0;">
+          <md-icon>lock</md-icon>
+          <input type="password" name="confirmPassword" placeholder="Confirm password" ng-model="vm.user.confirmPassword" match="vm.user.password" ng-minlength="3" required>
+        </md-input-container>
+
+
+
+        <!-- actions -->
+        <md-button type="submit" class="md-primary md-raised" ng-disabled="vm.form.$invalid">
+          <span>{{vm.form.loading ? 'Signing up...' : 'Sign up'}}</span>
+        </md-button>
+      </md-content>
+    </md-content>
+  </form>
+</div>
+
+
+
+<!-- <div class="container">
   <div class="row">
     <div class="col-sm-12">
       <h1>Sign up</h1>
@@ -83,4 +138,4 @@
     </div>
   </div>
   <hr>
-</div>
+</div> -->

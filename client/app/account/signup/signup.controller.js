@@ -1,41 +1,30 @@
 'use strict';
 
 class SignupController {
-  //start-non-standard
-  user = {};
-  errors = {};
-  submitted = false;
-  //end-non-standard
 
   constructor(Auth, $state) {
     this.Auth = Auth;
     this.$state = $state;
+
+    this.form = {};
+    this.user = {};
   }
 
-  register(form) {
-    this.submitted = true;
-
-    if (form.$valid) {
-      this.Auth.createUser({
-        name: this.user.name,
-        email: this.user.email,
-        password: this.user.password
-      })
+  submit() {
+    let data = _.pick(this.user, ['name', 'email', 'password']);
+    this.Auth.createUser(data)
       .then(() => {
         // Account created, redirect to home
         this.$state.go('main');
       })
       .catch(err => {
-        err = err.data;
-        this.errors = {};
 
         // Update validity of form fields that match the mongoose errors
-        angular.forEach(err.errors, (error, field) => {
-          form[field].$setValidity('mongoose', false);
-          this.errors[field] = error.message;
+        angular.forEach(err.data.errors, (error, field) => {
+          this.form[field].$setValidity('mongoose', false);
+          this.form[field].$error['mongoose'] = error.message;
         });
       });
-    }
   }
 }
 
