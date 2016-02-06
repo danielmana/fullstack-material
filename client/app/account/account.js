@@ -11,12 +11,12 @@ angular.module('kedb')
       })
       .state('logout', {
         url: '/logout?referrer',
-        referrer: 'main',
+        referrer: 'events',
         template: '',
         controller: function($state, Auth) {
           var referrer = $state.params.referrer ||
                           $state.current.referrer ||
-                          'main';
+                          'events';
           Auth.logout();
           $state.go(referrer);
         }

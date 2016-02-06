@@ -1,0 +1,30 @@
+<md-dialog flex>
+  <form name="vm.form" ng-submit="vm.submit()">
+
+    <!-- header -->
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{vm.event.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button">
+          <md-icon>edit</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" ng-click="vm.cancel()">
+          <md-icon>close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <!-- content -->
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <pre>{{vm.event.plain()|json}}</pre>
+      </div>
+    </md-dialog-content>
+
+    <!-- actions -->
+    <md-dialog-actions layout="row">
+      <md-button type="button" ng-click="vm.cancel()">Close</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

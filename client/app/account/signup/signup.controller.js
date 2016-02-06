@@ -14,8 +14,8 @@ class SignupController {
     let data = _.pick(this.user, ['name', 'email', 'password']);
     this.Auth.createUser(data)
       .then(() => {
-        // Account created, redirect to home
-        this.$state.go('main');
+        // Account created, redirect to events
+        this.$state.go('events');
       })
       .catch(err => {
 

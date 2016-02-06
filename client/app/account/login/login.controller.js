@@ -12,8 +12,8 @@ class LoginController {
   submit() {
     this.Auth.login(this.user)
       .then(() => {
-        // Logged in, redirect to home
-        this.$state.go('main');
+        // Logged in, redirect to events
+        this.$state.go('events');
       })
       .catch(() => {
         // TODO
