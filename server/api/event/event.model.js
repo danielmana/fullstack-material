@@ -15,7 +15,6 @@ var EventSchema = new mongoose.Schema({
   preg_msg: String,
   msg_sample: String,
   explanation: String,
-  fwd: String,
   fwd_type: String,
   action: String,
 
