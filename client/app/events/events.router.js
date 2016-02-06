@@ -45,7 +45,11 @@
                 }
               }
             })
-            .finally(() => {
+            .then(() => {
+              $state.go('^.^', null, {
+                reload: true
+              });
+            }, () => {
               $state.go('^.^');
             });
         }

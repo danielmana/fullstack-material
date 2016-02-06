@@ -9,6 +9,13 @@
       this.event = event;
     }
 
+    deleteEvent(event) {
+      event.remove()
+        .then(() => {
+          this.$mdDialog.hide();
+        });
+    }
+
     cancel() {
       this.$mdDialog.cancel();
     }
