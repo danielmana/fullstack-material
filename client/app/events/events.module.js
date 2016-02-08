@@ -6,8 +6,7 @@
     .module('kedb.events', [
       'ui.router',
       'restangular',
-      'kedb.resources',
-      'kedb.services',
+      'kedb.toast',
       'kedb.infinite-items'
     ]);
 

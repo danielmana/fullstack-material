@@ -2,10 +2,6 @@
 
 (function() {
 
-  angular
-    .module('kedb.events')
-    .factory('EventsResource', EventsResource);
-
   function EventsResource($rootScope, Restangular, toastService) {
     return Restangular
       .withConfig(RestangularConfigurer => {
@@ -30,5 +26,9 @@
       })
       .service('api/events');
   }
+
+  angular
+    .module('kedb.events')
+    .factory('EventsResource', EventsResource);
 
 })();

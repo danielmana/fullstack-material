@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('kedb')
-  .config(function($stateProvider) {
+(function() {
+
+  function config($stateProvider) {
     $stateProvider
       .state('login', {
         url: '/login',
@@ -15,8 +16,8 @@ angular.module('kedb')
         template: '',
         controller: function($state, Auth) {
           var referrer = $state.params.referrer ||
-                          $state.current.referrer ||
-                          'events';
+            $state.current.referrer ||
+            'events';
           Auth.logout();
           $state.go(referrer);
         }
@@ -34,11 +35,18 @@ angular.module('kedb')
         controllerAs: 'vm',
         authenticate: true
       });
-  })
-  .run(function($rootScope) {
+  }
+
+  function runBlock($rootScope) {
     $rootScope.$on('$stateChangeStart', function(event, next, nextParams, current) {
       if (next.name === 'logout' && current && current.name && !current.authenticate) {
         next.referrer = current.name;
       }
     });
-  });
+  }
+
+  angular.module('kedb')
+    .config(config)
+    .run(runBlock);
+
+})();

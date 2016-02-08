@@ -1,32 +1,36 @@
 'use strict';
 
-class SignupController {
+(function() {
 
-  constructor(Auth, $state) {
-    this.Auth = Auth;
-    this.$state = $state;
+  class SignupController {
 
-    this.form = {};
-    this.user = {};
-  }
+    constructor(Auth, $state) {
+      this.Auth = Auth;
+      this.$state = $state;
 
-  submit() {
-    let data = _.pick(this.user, ['name', 'email', 'password']);
-    this.Auth.createUser(data)
-      .then(() => {
-        // Account created, redirect to events
-        this.$state.go('events');
-      })
-      .catch(err => {
+      this.form = {};
+      this.user = {};
+    }
 
-        // Update validity of form fields that match the mongoose errors
-        angular.forEach(err.data.errors, (error, field) => {
-          this.form[field].$setValidity('mongoose', false);
-          this.form[field].$error.mongoose = error.message;
+    submit() {
+      let data = _.pick(this.user, ['name', 'email', 'password']);
+      this.Auth.createUser(data)
+        .then(() => {
+          // Account created, redirect to events
+          this.$state.go('events');
+        })
+        .catch(err => {
+
+          // Update validity of form fields that match the mongoose errors
+          angular.forEach(err.data.errors, (error, field) => {
+            this.form[field].$setValidity('mongoose', false);
+            this.form[field].$error.mongoose = error.message;
+          });
         });
-      });
+    }
   }
-}
 
-angular.module('kedb')
-  .controller('SignupController', SignupController);
+  angular.module('kedb')
+    .controller('SignupController', SignupController);
+
+})();

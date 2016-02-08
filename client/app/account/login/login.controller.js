@@ -1,25 +1,29 @@
 'use strict';
 
-class LoginController {
+(function() {
 
-  constructor(Auth, $state) {
-    this.Auth = Auth;
-    this.$state = $state;
+  class LoginController {
 
-    this.user = {};
+    constructor(Auth, $state) {
+      this.Auth = Auth;
+      this.$state = $state;
+
+      this.user = {};
+    }
+
+    submit() {
+      this.Auth.login(this.user)
+        .then(() => {
+          // Logged in, redirect to events
+          this.$state.go('events');
+        })
+        .catch(() => {
+          // TODO
+        });
+    }
   }
 
-  submit() {
-    this.Auth.login(this.user)
-      .then(() => {
-        // Logged in, redirect to events
-        this.$state.go('events');
-      })
-      .catch(() => {
-        // TODO
-      });
-  }
-}
+  angular.module('kedb')
+    .controller('LoginController', LoginController);
 
-angular.module('kedb')
-  .controller('LoginController', LoginController);
+})();

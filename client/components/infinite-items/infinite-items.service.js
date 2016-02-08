@@ -1,60 +1,68 @@
-class InfiniteItemsService {
+'use strict';
 
-  // implementing material virtual repeat
-  // https://material.angularjs.org/latest/#/demo/material.components.virtualRepeat
-  constructor() {
-    'ngInject';
-  }
+(function() {
 
-  /////////////////
-  // public
+  class InfiniteItemsService {
 
-  getInstance(resource) {
-    let instance = new InfiniteItemsService();
-    instance.resource = resource;
-    instance.query = {
-      page: 1,
-      limit: 50
-    };
-    return instance;
-  }
+    // implementing material virtual repeat
+    // https://material.angularjs.org/latest/#/demo/material.components.virtualRepeat
+    constructor() {}
 
-  fetchItems() {
-    // TODO add filters to query
-    let query = angular.copy(this.query);
-    this.toLoad = query.page * query.limit;
-    this.resolving = true;
+    /////////////////
+    // public
 
-    this.resource.getList(query)
-      .then(response => {
-        this.total = response.total;
-        if (parseInt(response.page) === 1) {
-          this.items = [];
-        }
-        Array.prototype.unshift.apply(response, this.items);
-        this.items = response;
-      })
-      .finally(() => {
-        this.resolving = false;
-      });
-  }
-
-  /////////////////
-  // required by virtualRepeat
-
-  getItemAtIndex(index) {
-    if (index >= this.toLoad) {
-      this.query.page++;
-      this.fetchItems();
-      return null;
+    getInstance(resource) {
+      let instance = new InfiniteItemsService();
+      instance.resource = resource;
+      instance.query = {
+        page: 1,
+        limit: 50
+      };
+      instance.fetchItems();
+      return instance;
     }
-    return this.items ? this.items[index] : null;
+
+    fetchItems() {
+      // TODO add filters to query
+      this.toLoad = this.query.page * this.query.limit;
+      this.resolving = true;
+
+      this.resource.getList(this.query)
+        .then(response => {
+          this.total = response.total;
+          if (parseInt(response.page) === 1) {
+            this.items = [];
+          }
+          Array.prototype.unshift.apply(response, this.items);
+          this.items = response;
+        })
+        .finally(() => {
+          this.resolving = false;
+        });
+    }
+
+    setPage(page) {
+      this.query.page = page;
+    }
+
+    /////////////////
+    // required by virtualRepeat
+
+    getItemAtIndex(index) {
+      if (index >= this.toLoad) {
+        this.query.page++;
+        this.fetchItems();
+        return null;
+      }
+      return this.items ? this.items[index] : null;
+    }
+
+    getLength() {
+      return angular.isDefined(this.total) ? this.total : 10;
+    }
   }
 
-  getLength() {
-    return angular.isDefined(this.total) ? this.total : 10;
-  }
-}
+  angular.module('kedb.infinite-items')
+    .service('infiniteItemsService', InfiniteItemsService);
 
-angular.module('kedb.infinite-items')
-  .service('infiniteItemsService', InfiniteItemsService);
+})();

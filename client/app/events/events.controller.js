@@ -15,7 +15,6 @@
 
     activate() {
       this.data = this.infiniteItemsService.getInstance(this.EventsResource);
-      this.data.fetchItems();
 
       // refresh events
       this.$scope.$on('kedb:refresh', (event, model) => {
@@ -26,6 +25,7 @@
     }
 
     refresh() {
+      this.data.setPage(1);
       this.data.fetchItems();
     }
 

@@ -268,7 +268,7 @@ gulp.task('lint:scripts:client', () => {
     return gulp.src(_.union(
         paths.client.scripts,
         _.map(paths.client.test, blob => '!' + blob),
-        [`!${clientPath}/app/app.constant.js`]
+        [`!${clientPath}/app/app.constant.shared.js`]
     ))
         .pipe(lintClientScripts());
 });
@@ -511,7 +511,7 @@ gulp.task('constant', function() {
     constants: { appConfig: sharedConfig }
   })
     .pipe(plugins.rename({
-      basename: 'app.constant'
+      basename: 'app.constant.shared'
     }))
     .pipe(gulp.dest(`${clientPath}/app/`))
 });

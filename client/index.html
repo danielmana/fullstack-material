@@ -13,7 +13,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
-      <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
       <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
       <!-- endbower -->
     <!-- endbuild -->
@@ -38,7 +37,6 @@
     <![endif]-->
     <!-- build:js({client,node_modules}) app/vendor.js -->
       <!-- bower:js -->
-      <script src="bower_components/jquery/dist/jquery.js"></script>
       <script src="bower_components/angular/angular.js"></script>
       <script src="bower_components/angular-resource/angular-resource.js"></script>
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -61,16 +59,16 @@
       <script src="app/events/events.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/infinite-items/infinite-items.module.js"></script>
-      <script src="components/resources/resources.module.js"></script>
-      <script src="components/services/services.module.js"></script>
+      <script src="components/toast/toast.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/account/account.js"></script>
+      <script src="app/account/account.router.js"></script>
       <script src="app/account/login/login.controller.js"></script>
       <script src="app/account/settings/settings.controller.js"></script>
       <script src="app/account/signup/signup.controller.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/admin/admin.router.js"></script>
-      <script src="app/app.constant.js"></script>
+      <script src="app/app.config.js"></script>
+      <script src="app/app.constant.shared.js"></script>
       <script src="app/events/event-view/event-view.controller.js"></script>
       <script src="app/events/events.controller.js"></script>
       <script src="app/events/events.resource.js"></script>
@@ -80,16 +78,13 @@
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
       <script src="components/auth/user.service.js"></script>
-      <script src="components/footer/footer.directive.js"></script>
       <script src="components/infinite-items/infinite-items.service.js"></script>
-      <script src="components/modal/modal.service.js"></script>
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.controller.js"></script>
       <script src="components/oauth-buttons/oauth-buttons.directive.js"></script>
-      <script src="components/resources/resources.run.js"></script>
-      <script src="components/services/toast.service.js"></script>
+      <script src="components/toast/toast.service.js"></script>
       <script src="components/util/util.service.js"></script>
       <!-- endinjector -->
     <!-- endbuild -->
