@@ -5,7 +5,9 @@
   angular
     .module('kedb.events', [
       'ui.router',
-      'restangular'
+      'restangular',
+      'kedb.resources',
+      'kedb.services'
     ]);
 
 })();
