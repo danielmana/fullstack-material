@@ -61,7 +61,11 @@ function handleError(res, statusCode) {
 
 // Gets a list of Events
 export function index(req, res) {
-  Event.findAsync()
+  let query = {
+    page: req.query.page,
+    limit: parseInt(req.query.limit)
+  };
+  Event.paginate({}, query)
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

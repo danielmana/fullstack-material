@@ -11,7 +11,7 @@ let seed = require('./seed.json')
 
 Event.find({}).removeAsync()
   .then(() => {
-    Event.create(seed.splice(0, 50));
+    Event.create(seed);
   });
 
 User.find({}).removeAsync()

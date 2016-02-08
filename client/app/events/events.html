@@ -1,13 +1,15 @@
-<md-list ng-cloak>
-  <md-list-item class="md-2-line secondary-button-padding" ng-repeat="event in vm.events" ng-click="vm.showEvent($event, event)">
-    <div class="md-list-item-text">
-      <h3>{{event.name}}</h3>
-      <p>{{event.description}}</p>
-    </div>
-    <md-button class="md-accent md-raised md-secondary" ng-click="doSecondaryAction($event)" style="font-size: 20px;">
-      <md-tooltip md-direction="left">+1 this event</md-tooltip>
-      <span>+ 666</span>
-    </md-button>
-    <md-divider></md-divider>
-  </md-list-item>
+<md-list ng-cloak layout="column" flex style="padding: 0;">
+  <md-virtual-repeat-container flex>
+    <md-list-item class="md-2-line secondary-button-padding" md-virtual-repeat="event in vm.data" md-on-demand ng-click="vm.showEvent($event, event)">
+      <md-divider></md-divider>
+      <div class="md-list-item-text">
+        <h3>{{event.name}}</h3>
+        <p>{{event.description}}</p>
+      </div>
+      <md-button class="md-accent md-raised md-secondary" ng-click="doSecondaryAction($event)" style="font-size: 20px;">
+        <md-tooltip md-direction="left">+1 this event</md-tooltip>
+        <span>+ 666</span>
+      </md-button>
+    </md-list-item>
+  </md-virtual-repeat-container>
 </md-list>

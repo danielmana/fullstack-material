@@ -17,7 +17,15 @@
           if (operation === 'remove') {
             toastService.showRemoveSuccess(what, response.config.data);
           }
-          return data;
+
+          // return array for paginated results
+          let result = angular.copy(data);
+          if (data.docs) {
+            result = data.docs;
+            delete data.docs;
+            _.defaults(result, data);
+          }
+          return result;
         });
       })
       .service('api/events');

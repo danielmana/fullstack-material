@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
+var mongoosePaginate = require('mongoose-paginate');
 
 var EventSchema = new mongoose.Schema({
   name: String,
@@ -29,5 +30,8 @@ var EventSchema = new mongoose.Schema({
   actionable: Boolean,
   fwd: Boolean
 });
+
+// add pagination
+EventSchema.plugin(mongoosePaginate);
 
 export default mongoose.model('Event', EventSchema);

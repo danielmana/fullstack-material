@@ -4,16 +4,20 @@
 
   class EventsController {
 
-    constructor($scope, $state, EventsResource, events) {
+    constructor($scope, $state, EventsResource, infiniteItemsService) {
       this.$scope = $scope;
       this.$state = $state;
+      this.infiniteItemsService = infiniteItemsService;
       this.EventsResource = EventsResource;
-      this.events = events;
 
       this.activate();
     }
 
     activate() {
+      this.data = this.infiniteItemsService.getInstance(this.EventsResource);
+      this.data.fetchItems();
+
+      // refresh events
       this.$scope.$on('kedb:refresh', (event, model) => {
         if (model === 'events') {
           this.refresh();
@@ -22,7 +26,7 @@
     }
 
     refresh() {
-      this.events = this.EventsResource.getList().$object;
+      this.data.fetchItems();
     }
 
     showEvent($event, event) {

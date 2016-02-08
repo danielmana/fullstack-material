@@ -9,12 +9,7 @@
         templateUrl: 'app/events/events.html',
         controller: 'EventsController',
         controllerAs: 'vm',
-        authenticate: 'user',
-        resolve: {
-          events: EventsResource => {
-            return EventsResource.getList();
-          }
-        }
+        authenticate: 'user'
       })
       .state('events.event', {
         abstract: true,

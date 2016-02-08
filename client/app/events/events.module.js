@@ -7,7 +7,8 @@
       'ui.router',
       'restangular',
       'kedb.resources',
-      'kedb.services'
+      'kedb.services',
+      'kedb.infinite-items'
     ]);
 
 })();
