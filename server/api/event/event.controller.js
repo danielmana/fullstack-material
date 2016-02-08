@@ -61,13 +61,19 @@ function handleError(res, statusCode) {
 
 // Gets a list of Events
 export function index(req, res) {
-  let query = {
-    page: req.query.page,
-    limit: parseInt(req.query.limit)
-  };
-  Event.paginate({}, query)
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  if (req.query.page || req.query.limit) {
+    let query = {
+      page: req.query.page,
+      limit: parseInt(req.query.limit)
+    };
+    Event.paginate({}, query)
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  } else {
+    Event.findAsync()
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  }
 }
 
 // Gets a single Event from the DB

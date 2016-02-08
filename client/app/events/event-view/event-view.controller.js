@@ -4,8 +4,9 @@
 
   class EventViewController {
 
-    constructor($mdDialog, event) {
+    constructor($mdDialog, Auth, event) {
       this.$mdDialog = $mdDialog;
+      this.isAdmin = Auth.isAdmin();
       this.event = event;
     }
 
