@@ -16,7 +16,6 @@
       let data = _.pick(this.user, ['name', 'email', 'password']);
       this.Auth.createUser(data)
         .then(() => {
-          // Account created, redirect to events
           this.$state.go('events');
         })
         .catch(err => {

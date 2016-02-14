@@ -8,17 +8,20 @@
       this.Auth = Auth;
       this.$state = $state;
 
+      this.form = {};
       this.user = {};
     }
 
     submit() {
       this.Auth.login(this.user)
         .then(() => {
-          // Logged in, redirect to events
           this.$state.go('events');
         })
         .catch(() => {
           // TODO
+        })
+        .finally(() => {
+          this.form.$setPristine();
         });
     }
   }
