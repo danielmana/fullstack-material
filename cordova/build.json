@@ -1,0 +1,9 @@
+{
+    "android": {
+        "release": {
+            "keystore": "release-key.keystore",
+            "alias": "danielmana",
+            "keystoreType": ""
+        }
+    }
+}
