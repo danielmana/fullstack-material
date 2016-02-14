@@ -35,7 +35,11 @@ Running `npm test` will run the unit tests with karma.
 
 1. Ensure you have a remote to heroku on `dist` folder: `heroku https://git.heroku.com/kedb.git`
 
-2. Run `git push heroku master`.
+2. Run `gulp build` to update the `dist`
+
+3. Run `cd dist` to be on the folder
+
+4. Commit changes and run `git push heroku master`.
 
 ## Run mobile app
 
