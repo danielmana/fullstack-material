@@ -25,8 +25,18 @@ This project was generated with the [Angular Full-Stack Generator](https://githu
 
 ## Build & development
 
-Run `grunt build` for building and `grunt serve` for preview.
+Run `gulp build` for building and `gulp serve` for preview.
 
 ## Testing
 
 Running `npm test` will run the unit tests with karma.
+
+## Run mobile app
+
+1. Run `npm install -g cordova` to install [Cordova](https://cordova.apache.org/)
+
+2. On the folder `cordova` run `cordova prepare` to install required platforms and plugins.
+
+3. Build the last version of the app with `gulp build` and open the emulator for Android: `cordova run android`
+
+4. Bump up version on `config.xml` file and run `cordova build android --release` to create an APK release
