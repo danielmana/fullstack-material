@@ -2,14 +2,25 @@
 
 (function() {
 
-function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
+function authInterceptor($rootScope, $q, $cookies, $injector, Util, tokenService, deviceConfig) {
   var state;
   return {
     // Add authorization token to headers
     request(config) {
-      config.headers = config.headers || {};
-      if ($cookies.get('token') && Util.isSameOrigin(config.url)) {
-        config.headers.Authorization = 'Bearer ' + $cookies.get('token');
+      let token = tokenService.getToken();
+      if (!token) {
+        return config;
+      }
+      if (deviceConfig.usingDevice && !/\.html/.test(config.url)) {
+        // token for app
+        config.params = config.params || {};
+        _.extend(config.params, {
+          'access_token': token
+        });
+      } else {
+        // token for website
+        config.headers = config.headers || {};
+        config.headers.Authorization = 'Bearer ' + token;
       }
       return config;
     },

@@ -2,12 +2,12 @@
 
 (function() {
 
-function AuthService($location, $http, $cookies, $q, appConfig, Util, User, AuthLocalResource) {
+function AuthService($location, $http, $q, appConfig, Util, User, AuthLocalResource, UserResource, tokenService) {
   var safeCb = Util.safeCb;
   var currentUser = {};
   var userRoles = appConfig.userRoles || [];
 
-  if ($cookies.get('token') && $location.path() !== '/logout') {
+  if (tokenService.getToken() && $location.path() !== '/logout') {
     currentUser = User.get();
   }
 
@@ -26,9 +26,12 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User, Auth
         password: password
       })
         .then(res => {
-          $cookies.put('token', res.token);
-          currentUser = User.get();
-          return currentUser.$promise;
+          tokenService.saveToken(res.token);
+          return UserResource.one('me').get()
+            .then(user => {
+              currentUser = user;
+              return user;
+            });
         })
         .then(user => {
           safeCb(callback)(null, user);
@@ -45,7 +48,7 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User, Auth
      * Delete access token and user info
      */
     logout() {
-      $cookies.remove('token');
+      tokenService.removeToken();
       currentUser = {};
     },
 
@@ -59,7 +62,7 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User, Auth
     createUser(user, callback) {
       return User.save(user,
         function(data) {
-          $cookies.put('token', data.token);
+          tokenService.saveToken(data.token);
           currentUser = User.get();
           return safeCb(callback)(null, user);
         },
@@ -176,7 +179,7 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User, Auth
      * @return {String} - a token string used for authenticating
      */
     getToken() {
-      return $cookies.get('token');
+      return tokenService.getToken();
     }
   };
 

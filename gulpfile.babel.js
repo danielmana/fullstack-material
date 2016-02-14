@@ -21,6 +21,7 @@ var config;
 
 const clientPath = require('./bower.json').appPath || 'client';
 const serverPath = 'server';
+const cordovaPath = 'cordova';
 const paths = {
     client: {
         assets: `${clientPath}/assets/**/*`,
@@ -450,6 +451,7 @@ gulp.task('build', cb => {
             'transpile:server',
             'build:client'
         ],
+        'build:cordova',
         cb);
 });
 
@@ -601,4 +603,31 @@ gulp.task('test:e2e', ['env:all', 'env:test', 'start:server', 'webdriver_update'
         }).on('end', () => {
             process.exit();
         });
+});
+
+// Cordova
+gulp.task('build:cordova', cb => {
+    runSequence(
+        'clean:cordova',
+        'copy:cordova',
+        'fonts:cordova',
+        cb);
+});
+
+gulp.task('clean:cordova', () => del([`${cordovaPath}/www/**`], {dot: true}));
+
+gulp.task('copy:cordova', () => {
+    return gulp.src(`${paths.dist}/${clientPath}/**/*`)
+        .pipe(plugins.filter('**/*.{html,js,css,png,json}'))
+        .pipe(plugins.replace('<base href="/">', ''))
+        .pipe(plugins.replace('<!-- @@script_cordova -->', '<script src="cordova.js"></script>'))
+        .pipe(plugins.replace(`@@usingDevice`, 'true'))
+        .pipe(plugins.replace(`@@apiBaseUrl`, 'https://kedb.herokuapp.com'))
+        .pipe(gulp.dest(`${cordovaPath}/www`));
+});
+
+gulp.task('fonts:cordova', () => {
+    return gulp.src(`${clientPath}/bower_components/material-design-iconfont/iconfont/*`)
+        .pipe(plugins.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+        .pipe(gulp.dest(`${cordovaPath}/www/fonts`));
 });
