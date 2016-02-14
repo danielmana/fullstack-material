@@ -31,6 +31,12 @@ Run `gulp build` for building and `gulp serve` for preview.
 
 Running `npm test` will run the unit tests with karma.
 
+## Publish on heroku
+
+1. Ensure you have a remote to heroku on `dist` folder: `heroku https://git.heroku.com/kedb.git`
+
+2. Run `git push heroku master`.
+
 ## Run mobile app
 
 1. Run `npm install -g cordova` to install [Cordova](https://cordova.apache.org/)
@@ -39,4 +45,8 @@ Running `npm test` will run the unit tests with karma.
 
 3. Build the last version of the app with `gulp build` and open the emulator for Android: `cordova run android`
 
-4. Bump up version on `config.xml` file and run `cordova build android --release` to create an APK release
+## Build APK
+
+1. Bump up version on `config.xml` file.
+
+2. Run `cordova build android --release` to create an APK release. You'll need to have generated a `.keystore` file on the same folder to sign Android releases.
