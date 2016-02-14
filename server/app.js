@@ -18,10 +18,16 @@ mongoose.connection.on('error', function(err) {
 });
 
 // Populate databases with sample data
-if (config.seedDB) { require('./config/seed'); }
+if (config.seedDB) {
+  require('./config/seed');
+}
+
+// Enable CORS
+var app = express();
+var cors = require('cors');
+app.use(cors());
 
 // Setup server
-var app = express();
 var server = http.createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
