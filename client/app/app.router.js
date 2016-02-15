@@ -6,7 +6,14 @@
     $stateProvider
       .state('app', {
         abstract: true,
-        templateUrl: 'app/app.html'
+        templateUrl: 'app/app.html',
+        controller: 'AppController',
+        controllerAs: 'app',
+        resolve: {
+          currentUser: Auth => {
+            return Auth.getCurrentUser();
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/events');

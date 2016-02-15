@@ -1,5 +1,5 @@
 <md-dialog flex>
-  <form name="vm.form" ng-submit="vm.submit()">
+  <form name="vm.form" ng-submit="vm.submit()" flex>
 
     <!-- header -->
     <md-toolbar>
@@ -19,7 +19,7 @@
     </md-toolbar>
 
     <!-- content -->
-    <md-dialog-content>
+    <md-dialog-content flex>
       <div class="md-dialog-content">
         <pre>{{vm.event.plain()|json}}</pre>
       </div>

@@ -20,7 +20,7 @@
   function runBlock($rootScope, Restangular, toastService) {
 
     // show toast on API error
-    Restangular.setErrorInterceptor((rejection) => {
+    Restangular.setErrorInterceptor(rejection => {
       toastService.showError(rejection);
       return true;
     });

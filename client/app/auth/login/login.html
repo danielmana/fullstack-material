@@ -1,5 +1,5 @@
 <md-dialog class="md-dialog-fullscreen md-transition-in" aria-label="Login" flex="66">
-  <form name="vm.form" ng-submit="vm.submit()" novalidate layout="column" flex>
+  <form name="vm.form" ng-submit="vm.submit()" layout="column" flex>
     <md-toolbar>
       <div class="md-toolbar-tools" layout="row" layout-align="center">
         <h2>Sign in with your account</h2>
@@ -10,13 +10,19 @@
         <!-- email -->
         <md-input-container md-no-float class="md-block" style="margin: 0;">
           <md-icon>email</md-icon>
-          <input type="email" name="username" placeholder="Email" ng-model="vm.user.email" required autofocus>
+          <input type="email" name="email" placeholder="Email" ng-model="vm.user.email" required autofocus>
+          <div ng-messages="vm.form.email.$error">
+            <div ng-message="required">Field required</div>
+          </div>
         </md-input-container>
 
         <!-- password -->
         <md-input-container md-no-float class="md-block" style="margin: 0;">
           <md-icon>lock</md-icon>
           <input type="password" name="password" placeholder="Password" ng-model="vm.user.password" required>
+          <div ng-messages="vm.form.password.$error">
+            <div ng-message="required">Field required</div>
+          </div>
         </md-input-container>
 
         <!-- TODO remove users hint -->

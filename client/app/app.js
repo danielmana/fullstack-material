@@ -15,6 +15,7 @@
       'ngMaterial',
       'ngCookies',
       'ngResource',
+      'ngMessages',
       'restangular',
       'ngSanitize',
       'ui.router',

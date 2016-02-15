@@ -3,9 +3,9 @@
 (function() {
 
   class AdminController {
-    constructor(User) {
+    constructor(UserResource) {
       // Use the User $resource to fetch all users
-      this.users = User.query();
+      this.users = UserResource.getList().$object;
     }
 
     delete(user) {

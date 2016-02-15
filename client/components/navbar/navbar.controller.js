@@ -2,11 +2,8 @@
 
 class NavbarController {
 
-  constructor($mdSidenav, Auth) {
+  constructor($mdSidenav) {
     this.$mdSidenav = $mdSidenav;
-
-    this.isAdmin = Auth.isAdmin;
-    this.getCurrentUser = Auth.getCurrentUser;
   }
 
   toggleSidenav() {

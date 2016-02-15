@@ -1,8 +1,9 @@
 class ToastService {
 
-  constructor($rootScope, $mdToast, Restangular) {
+  constructor($rootScope, $mdToast, $log, Restangular) {
     this.$rootScope = $rootScope;
     this.$mdToast = $mdToast;
+    this.$log = $log;
     this.Restangular = Restangular;
   }
 
@@ -27,7 +28,9 @@ class ToastService {
   }
 
   showError(rejection) {
-    this.show(rejection.data.message);
+    this.$log.error(rejection);
+    let message = _.get(rejection, 'data.message') || rejection.statusText || 'Error occurred';
+    this.show(message);
   }
 
   show(message) {
