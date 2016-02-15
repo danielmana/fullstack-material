@@ -22,25 +22,21 @@
     </a>
     <span flex></span>
 
-    <!-- actions no user -->
-    <md-button ng-hide="nav.isLoggedIn()" ui-sref="signup">Sign up</md-button>
-    <md-button ng-hide="nav.isLoggedIn()" ui-sref="login">Sign in</md-button>
-
     <!-- actions user -->
-    <md-menu ng-show="nav.isLoggedIn()">
+    <md-menu>
       <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
         <md-icon>person</md-icon>
       </md-button>
       <md-menu-content>
         <md-subheader class="md-primary">{{nav.getCurrentUser().name}}</md-subheader>
         <md-menu-item>
-          <md-button ui-sref="settings" disabled="disabled">
+          <md-button ui-sref="app.settings" disabled="disabled">
             <md-icon md-menu-align-target>lock</md-icon>
             Change password
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ui-sref="logout">
+          <md-button ui-sref="auth.logout">
             <md-icon md-menu-align-target>exit_to_app</md-icon>
             Logout
           </md-button>

@@ -1,0 +1,40 @@
+<md-dialog class="md-dialog-fullscreen md-transition-in" aria-label="Login" flex="66">
+  <form name="vm.form" ng-submit="vm.submit()" novalidate layout="column" flex>
+    <md-toolbar>
+      <div class="md-toolbar-tools" layout="row" layout-align="center">
+        <h2>Sign in with your account</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout="column" flex>
+      <div class="md-dialog-content" layout="column" flex>
+        <!-- email -->
+        <md-input-container md-no-float class="md-block" style="margin: 0;">
+          <md-icon>email</md-icon>
+          <input type="email" name="username" placeholder="Email" ng-model="vm.user.email" required autofocus>
+        </md-input-container>
+
+        <!-- password -->
+        <md-input-container md-no-float class="md-block" style="margin: 0;">
+          <md-icon>lock</md-icon>
+          <input type="password" name="password" placeholder="Password" ng-model="vm.user.password" required>
+        </md-input-container>
+
+        <!-- TODO remove users hint -->
+        <p>
+          Admin user: <code>admin@example.com/admin</code><br>
+          Test user: <code>test@example.com/test</code>
+        </p>
+        <span flex></span>
+      </div>
+    </md-dialog-content>
+
+    <!-- actions -->
+    <md-dialog-actions layout="row">
+      <md-button type="button" ui-sref="auth.signup" style="text-transform: inherit;">I don't have an account</md-button>
+      <span flex></span>
+      <md-button type="submit" class="md-primary md-raised" ng-disabled="vm.form.$invalid || vm.form.$submitted">
+        <span>{{vm.form.$submitted ? 'Signing in...' : 'Sign in'}}</span>
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

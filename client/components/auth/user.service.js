@@ -21,7 +21,7 @@ function UserResource($resource) {
   });
 }
 
-angular.module('kedb.auth')
+angular.module('kedb.component.auth')
   .factory('User', UserResource);
 
 })();

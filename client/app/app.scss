@@ -13,6 +13,11 @@ body {
   max-height: 100%;
 }
 
+md-content.resolving {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'styles/icons';

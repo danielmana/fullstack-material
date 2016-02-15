@@ -11,9 +11,13 @@
     }
 
     deleteEvent(event) {
+      this.deleting = true;
       event.remove()
         .then(() => {
           this.$mdDialog.hide();
+        })
+        .finally(() => {
+          this.deleting = false;
         });
     }
 

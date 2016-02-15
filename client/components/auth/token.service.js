@@ -26,7 +26,7 @@
     }
   }
 
-  angular.module('kedb.auth')
+  angular.module('kedb.component.auth')
     .factory('tokenService', TokenService);
 
 })();

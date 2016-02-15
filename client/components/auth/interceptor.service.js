@@ -28,7 +28,7 @@ function authInterceptor($rootScope, $q, $cookies, $injector, Util, tokenService
     // Intercept 401s and redirect you to login
     responseError(response) {
       if (response.status === 401) {
-        (state || (state = $injector.get('$state'))).go('login');
+        (state || (state = $injector.get('$state'))).go('auth.login');
         // remove any stale tokens
         $cookies.remove('token');
       }
@@ -37,7 +37,7 @@ function authInterceptor($rootScope, $q, $cookies, $injector, Util, tokenService
   };
 }
 
-angular.module('kedb.auth')
+angular.module('kedb.component.auth')
   .factory('authInterceptor', authInterceptor);
 
 })();

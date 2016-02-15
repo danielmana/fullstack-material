@@ -6,7 +6,7 @@
       <div class="md-toolbar-tools">
         <h2 class="nowrap">{{vm.event.name}}</h2>
         <span flex></span>
-        <md-button ng-if="vm.isAdmin" class="md-icon-button" ng-click="vm.deleteEvent(vm.event)">
+        <md-button ng-if="vm.isAdmin" class="md-icon-button" ng-disabled="vm.deleting" ng-click="vm.deleteEvent(vm.event)">
           <md-icon>delete</md-icon>
         </md-button>
         <md-button ng-if="vm.isAdmin" class="md-icon-button">

@@ -15,7 +15,7 @@
     submit() {
       this.Auth.login(this.user)
         .then(() => {
-          this.$state.go('events');
+          this.$state.go('app.events');
         })
         .catch(() => {
           // TODO
@@ -26,7 +26,7 @@
     }
   }
 
-  angular.module('kedb')
+  angular.module('kedb.auth')
     .controller('LoginController', LoginController);
 
 })();

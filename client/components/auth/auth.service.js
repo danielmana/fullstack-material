@@ -186,7 +186,7 @@ function AuthService($location, $http, $q, appConfig, Util, User, AuthLocalResou
   return Auth;
 }
 
-angular.module('kedb.auth')
+angular.module('kedb.component.auth')
   .factory('Auth', AuthService);
 
 })();

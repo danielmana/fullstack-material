@@ -4,14 +4,14 @@
 
   function config($stateProvider) {
     $stateProvider
-      .state('events', {
+      .state('app.events', {
         url: '/events',
         templateUrl: 'app/events/events.html',
         controller: 'EventsController',
         controllerAs: 'vm',
         authenticate: 'user'
       })
-      .state('events.event', {
+      .state('app.events.event', {
         abstract: true,
         url: '/:id',
         // TODO find workaround for passing `$event` as a param:
@@ -25,9 +25,14 @@
           }
         }
       })
-      .state('events.event.view', {
+      .state('app.events.event.view', {
         url: '/view',
-        onEnter: ($state, $stateParams, $mdDialog, $mdMedia) => {
+        resolve: {
+          eventResolve: ($stateParams, EventsResource) => {
+            return EventsResource.one($stateParams.id).get();
+          }
+        },
+        onEnter: ($state, $mdDialog, $mdMedia, eventResolve) => {
           $mdDialog.show({
               // targetEvent: $stateParams.targetEvent,
               templateUrl: 'app/events/event-view/event-view.html',
@@ -35,8 +40,8 @@
               controllerAs: 'vm',
               fullscreen: $mdMedia('sm') || $mdMedia('xs'),
               resolve: {
-                event: (EventsResource) => {
-                  return EventsResource.one($stateParams.id).get();
+                event: () => {
+                  return eventResolve;
                 }
               }
             })

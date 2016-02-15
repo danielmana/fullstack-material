@@ -17,12 +17,20 @@
     }
   }
 
-  function runBlock(Restangular, toastService) {
+  function runBlock($rootScope, Restangular, toastService) {
 
     // show toast on API error
     Restangular.setErrorInterceptor((rejection) => {
       toastService.showError(rejection);
       return true;
+    });
+
+    $rootScope.$on('$stateChangeStart', () => {
+      $rootScope.stateResolving = true;
+    });
+
+    $rootScope.$on('$stateChangeSuccess', () => {
+      $rootScope.stateResolving = false;
     });
   }
 

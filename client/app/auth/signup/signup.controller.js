@@ -16,7 +16,7 @@
       let data = _.pick(this.user, ['name', 'email', 'password']);
       this.Auth.createUser(data)
         .then(() => {
-          this.$state.go('events');
+          this.$state.go('app.events');
         })
         .catch(err => {
 
@@ -29,7 +29,7 @@
     }
   }
 
-  angular.module('kedb')
+  angular.module('kedb.auth')
     .controller('SignupController', SignupController);
 
 })();

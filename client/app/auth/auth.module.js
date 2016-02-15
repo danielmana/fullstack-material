@@ -3,7 +3,7 @@
 (function() {
 
   angular
-    .module('kedb.admin', [
+    .module('kedb.auth', [
       'kedb.component.auth',
       'ui.router'
     ]);

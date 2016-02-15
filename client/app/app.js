@@ -6,9 +6,11 @@
     .module('kedb', [
       'kedb.auth',
       'kedb.admin',
+      'kedb.events',
+
+      'kedb.component.auth',
       'kedb.constants',
       'kedb.toast',
-      'kedb.events',
 
       'ngMaterial',
       'ngCookies',

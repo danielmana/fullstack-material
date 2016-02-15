@@ -7,7 +7,7 @@
       .service('api/users');
   }
 
-  angular.module('kedb.auth')
+  angular.module('kedb.component.auth')
     .factory('UserResource', UserResource);
 
 })();
