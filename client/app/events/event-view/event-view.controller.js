@@ -8,6 +8,22 @@
       this.$mdDialog = $mdDialog;
       this.isAdmin = Auth.isAdmin();
       this.event = event;
+
+      this.types = ['Software', 'Hardware'];
+      this.severities = [1, 2, 3, 4, 5, 6, 7];
+      this.criticalities = ['Low', 'Medium', 'High'];
+      this.vendors = [
+        'Cisco',
+        'Microsoft',
+        'Sendmail',
+        'Apache',
+        'Redhat',
+        'Ubuntu',
+        'Postgres',
+        'MySQL',
+        'LogZilla',
+        'Other (TODO)'
+      ];
     }
 
     deleteEvent(event) {
@@ -21,7 +37,7 @@
         });
     }
 
-    cancel() {
+    close() {
       this.$mdDialog.cancel();
     }
   }
