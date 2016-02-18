@@ -2,7 +2,7 @@
 
 (function() {
 
-  function config($urlRouterProvider, $locationProvider, RestangularProvider, deviceConfigProvider) {
+  function config($urlRouterProvider, $locationProvider, $mdThemingProvider, RestangularProvider, deviceConfigProvider) {
     $urlRouterProvider.otherwise('/events');
 
     let usingDevice = /true/i.test('@@usingDevice');
@@ -15,6 +15,20 @@
       // config for website
       $locationProvider.html5Mode(true);
     }
+
+    // setup material themes
+    var lzPrimaryPalette = $mdThemingProvider.extendPalette('blue', {
+      '500': '#32a1ac',
+      '600': '#2c8f98'
+    });
+    var lzAccentPalette = $mdThemingProvider.extendPalette('red', {
+      'A200': '#f07600'
+    });
+    $mdThemingProvider.definePalette('lzPrimaryPalette', lzPrimaryPalette);
+    $mdThemingProvider.definePalette('lzAccentPalette', lzAccentPalette);
+    $mdThemingProvider.theme('default')
+      .primaryPalette('lzPrimaryPalette')
+      .accentPalette('lzAccentPalette');
   }
 
   function runBlock($rootScope, Restangular, toastService) {
